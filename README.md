@@ -345,23 +345,7 @@ modified during the analysis. ✅
 
 ---
 
-## 9. Limitations
-
-- This analysis was done on a Kali Linux workstation rather than a disposable UTM VM. It was only safe
-  because the sample's source had been reviewed first and it only writes inside `./lab_workspace`. With
-  real malware, the guide's isolated VM, snapshot and host-only network precautions are required.
-- Dynamic analysis only shows what happened in **this run**. Real malware may change its behaviour
-  depending on OS, privileges, time, arguments, network access, or whether it detects a debugger such
-  as `strace`.
-- `ss` takes a single snapshot after the run. For this short-lived sample, the stronger network evidence
-  is the `strace` `%network` trace. The optional `tcpdump` capture was not used.
-- The sample is a Python script, not a Windows PE. PE headers, import tables, packers, Registry
-  persistence (Procmon/Regshot/Autoruns) and memory analysis (Volatility 3) could not be demonstrated
-  with this sample on Kali.
-
----
-
-## 10. Conclusion
+## 9. Conclusion
 
 Static analysis showed that `suspicious_sample.py` is a Python text script (SHA-256 `7ef94bfb…0554bc26`),
 not a PE executable, and that it contains ransomware-style strings and file-activity markers. The
@@ -374,13 +358,3 @@ static analysis builds a hypothesis that dynamic analysis then confirms with evi
 
 ---
 
-## 11. Cleanup
-
-The lab output is confined to `~/SWS405_MalwareLab/lab_workspace`. Reverting to a clean snapshot is the
-preferred cleanup. Otherwise, remove only the lab-created directory after checking its path:
-
-```bash
-cd ~/SWS405_MalwareLab && pwd
-ls -la lab_workspace
-rm -r lab_workspace
-```
