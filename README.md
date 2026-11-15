@@ -66,7 +66,7 @@ ls -l
 ![Setup and tool verification](screenshots/01_setup_and_tools.png)
 
 **Result:** the working directory is `/home/dw4ngsh3rs/SWS405_MalwareLab`. All four analysis tools
-print a version, and the directory holds only the three lab files. ✅
+print a version, and the directory holds only the three lab files. 
 
 ---
 
@@ -106,7 +106,7 @@ sha256sum -c sample_hash_before.txt
 | **SHA-256** | **`7ef94bfb15c7479e209a701b40cf6994a2f9c4b0870b4576966b43050554bc26`** |
 
 The SHA-256 was saved to `sample_hash_before.txt`, and `sha256sum -c` returned
-**`suspicious_sample.py: OK`**. ✅
+**`suspicious_sample.py: OK`**. 
 
 ### A3, A5: Strings analysis and YARA pattern matching
 
@@ -141,7 +141,7 @@ found:
 | `$marker3` | `0xa88` | `No encryption, deletion, persistence` |
 
 As a negative control, the same rule run against `national.exe.pdf` printed **nothing (no match)**. The
-rule only fires on files that contain its marker strings. ✅
+rule only fires on files that contain its marker strings. 
 
 ### A6. Static analysis worksheet
 
@@ -174,7 +174,7 @@ the four expected files: the sample, the rule, the trap file and `sample_hash_be
 **Execution:** the sample ran under `strace`, which followed child processes (`-f`) and recorded file,
 process and network system calls to `dynamic_trace.txt` (307 lines). The program printed
 `[FILE_CREATE]` ×3, `[FILE_READ]` ×3, `[NOTE_CREATE]` and `[LOG_WRITE]`, then finished with
-`Complete. No encryption, deletion, persistence, or network activity.` ✅
+`Complete. No encryption, deletion, persistence, or network activity.` 
 
 > **B2 (process monitoring):** the sample ran for less than a second, so a `watch -n 1 ps …` monitor
 > would probably miss it (the guide notes this is normal). Process activity is shown more reliably by
@@ -212,7 +212,7 @@ was deleted or renamed.
 
 **Network evidence:** `grep -E 'AF_INET|connect\('` returned **no lines**, and the count is **0**. A
 broader search for `socket(`, `connect(`, `bind(` and `sendto` in the trace also returned 0. Because
-`strace` was tracing `%network` calls, any socket activity would have been logged. ✅
+`strace` was tracing `%network` calls, any socket activity would have been logged. 
 
 ### B4, B5, B6: Created files, ransom note, sockets and sample integrity
 
@@ -269,7 +269,7 @@ hold plain text (`DEMO DATA ONLY - ...`). **They were not encrypted.**
 unrelated system and application sockets, which were left out of the screenshot.)
 
 **Integrity:** `sha256sum -c sample_hash_before.txt` → **`suspicious_sample.py: OK`**. The sample was not
-modified during the analysis. ✅
+modified during the analysis. 
 
 ---
 
@@ -357,4 +357,3 @@ after the analysis. The sample is a **harmless ransomware-behaviour simulator**,
 static analysis builds a hypothesis that dynamic analysis then confirms with evidence.
 
 ---
-
